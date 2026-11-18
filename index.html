@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crumbs - Cookie Shop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:#FDFBF7;
+    color:#3E2723;
+}
+
+button,input{
+    font:inherit;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+#loginPage{
+    min-height:100vh;
+    padding:30px;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:#FFF8ED;
+    color:#59351F;
+    font-family:"Nunito",sans-serif;
+}
+
+#loginPage.active{
+    display:flex;
+}
+
+/* Two-column login layout */
+
+.login-main-container{
+    width:100%;
+    max-width:1450px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    align-items:center;
+    gap:70px;
+}
+
+/* Image on the left */
+
+.login-image-container{
+    width:100%;
+    height:630px;
+    overflow:hidden;
+    border-radius:12px;
+    background:transparent;
+}
+
+.login-image-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+
+/* Login form on the right */
+
+.login-container{
+    width:100%;
+    max-width:440px;
+    margin:auto;
+    text-align:center;
+}
+
+.logo-icon{
+    font-size:65px;
+    color:#96572F;
+    margin-bottom:0;
+}
+
+.website-title{
+    margin:0 0 15px;
+    font-family:"Pacifico",cursive;
+    font-size:43px;
+    font-weight:normal;
+    color:#693B20;
+}
+
+.login-title{
+    margin:10px 0 25px;
+    color:#693B20;
+    font-size:28px;
+    font-weight:800;
+}
+
+.input-label{
+    display:block;
+    text-align:left;
+    margin-bottom:6px;
+    color:#30251E;
+    font-size:15px;
+    font-weight:600;
+}
+
+.input-wrapper{
+    position:relative;
+    margin-bottom:17px;
+}
+
+.input-icon{
+    position:absolute;
+    top:50%;
+    left:15px;
+    transform:translateY(-50%);
+    color:#A77A52;
+}
+
+.email-input,
+.password-input{
+    width:100%;
+    height:48px;
+    padding:12px 15px 12px 43px;
+    border:2px solid #95643F;
+    border-radius:8px;
+    background:#FFF9F1;
+    color:#59351F;
+    font-family:"Nunito",sans-serif;
+    font-size:15px;
+    outline:none;
+}
+
+.email-input:focus,
+.password-input:focus{
+    border-color:#754020;
+    box-shadow:0 0 0 3px rgba(130,75,41,.12);
+}
+
+.continue-btn,
+.google-btn{
+    width:100%;
+    height:49px;
+    border:0;
+    border-radius:8px;
+    font-family:"Nunito",sans-serif;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.continue-btn{
+    background:#98572F;
+    color:white;
+    font-size:17px;
+}
+
+.continue-btn:hover{
+    background:#754020;
+}
+
+.divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:27px 0 17px;
+    color:#75563D;
+    font-size:15px;
+    font-weight:600;
+}
+
+.divider:before,
+.divider:after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#E3D4C1;
+}
+
+.google-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    background:white;
+    color:#292929;
+    box-shadow:0 3px 8px rgba(70,45,25,.13);
+}
+
+.google-btn:hover{
+    background:#F5EBDD;
+}
+
+.google-btn i{
+    color:#4285F4;
+    font-size:20px;
+}
+
+.login-note{
+    font-size:12px;
+    color:#8b715d;
+    margin-top:14px;
+}
+
+
+/* =========================
+   HOME PAGE
+========================= */
+
+#homePage{
+    background:#FDFBF7;
+    color:#3E2723;
+}
+
+.home-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 5%;
+    background:#FDFBF7;
+    border-bottom:1px solid #EFEBE9;
+    gap:20px;
+}
+
+.home-nav{
+    list-style:none;
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.home-nav a{
+    text-decoration:none;
+    color:#3E2723;
+    font-weight:600;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.home-nav a:hover{
+    color:#A66A3C;
+}
+
+.home-logo{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    font-weight:bold;
+    font-style:italic;
+    color:#3E2723;
+    white-space:nowrap;
+}
+
+.welcome{
+    font-size:13px;
+    color:#795548;
+    margin-top:8px;
+}
+
+.nav-icons{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.nav-icons button{
+    border:0;
+    background:none;
+    color:#3E2723;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.hero{
+    width:100%;
+    height:400px;
+    background:#D7CCC8 url("https://drive.google.com/thumbnail?id=1e-4pP-4Et2J545EH-lus07CrQyJJY0d1&sz=w2000") no-repeat center center/cover;
+}
+
+.products-section{
+    text-align:center;
+    padding:50px 5%;
+}
+
+.section-title{
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:40px;
+    text-transform:uppercase;
+}
+
+.home-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:30px;
+    margin-bottom:40px;
+}
+
+.home-product{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+.home-cookie-img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+    background:#E0E0E0;
+}
+
+.cookie-name{
+    font-size:14px;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin-bottom:5px;
+    min-height:40px;
+}
+
+.cookie-desc{
+    font-size:12px;
+    color:#795548;
+    margin-bottom:15px;
+    min-height:35px;
+}
+
+.btn-explore,
+.btn-shop{
+    background:#C5A880;
+    color:white;
+    border:0;
+    padding:10px 18px;
+    font-size:12px;
+    font-weight:bold;
+    text-transform:uppercase;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+.btn-explore:hover,
+.btn-shop:hover{
+    background:#8D6E63;
+}
+
+.home-footer{
+    background:#3E2723;
+    color:#D7CCC8;
+    padding:40px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:20px;
+    font-size:13px;
+}
+
+.social-icons{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+.home-footer a{
+    color:#D7CCC8;
+    text-decoration:none;
+}
+
+.footer-center{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.footer-right{
+    text-align:right;
+}
+
+.footer-right p{
+    margin-top:10px;
+    font-size:11px;
+    color:#BCAAA4;
+}
+
+
+
+
+/* =========================
+   ABOUT / OUR STORY PAGE
+   Styles are scoped to #aboutPage so existing pages remain unchanged.
+========================= */
+
+#aboutPage{
+    min-height:100vh;
+    padding:0 2.8% 42px;
+    background:#fff7e9;
+    color:#24170f;
+    font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+#aboutPage .about-navbar{
+    min-height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    position:relative;
+    padding:8px 12px;
+    background:#fff7e9;
+}
+
+#aboutPage .about-brand{
+    position:absolute;
+    left:0;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:#6f3d20;
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    font-style:italic;
+    font-weight:700;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#aboutPage .about-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+#aboutPage .about-links button,
+#aboutPage .about-cart{
+    border:0;
+    background:none;
+    color:#24170f;
+    font-family:inherit;
+    font-size:12px;
+    cursor:pointer;
+}
+
+#aboutPage .about-links button:hover,
+#aboutPage .about-links button.current{
+    color:#8b572e;
+    text-decoration:underline;
+    text-underline-offset:4px;
+}
+
+#aboutPage .about-cart{
+    position:absolute;
+    right:0;
+    color:#6f3d20;
+    font-size:17px;
+}
+
+#aboutPage .about-hero{
+    min-height:278px;
+    display:grid;
+    grid-template-columns:1fr 1.05fr 1fr;
+    align-items:stretch;
+    overflow:hidden;
+    border-radius:11px;
+    background:#f3dfc4;
+}
+
+#aboutPage .about-hero-image{
+    min-height:278px;
+    background-size:cover;
+    background-position:center;
+}
+
+#aboutPage .about-hero-image.left{
+    background-image:url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1000&q=85");
+}
+
+#aboutPage .about-hero-image.right{
+    background-image:url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1000&q=85");
+}
+
+#aboutPage .about-hero-copy{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:25px 16px;
+    text-align:center;
+    background:linear-gradient(90deg,#f3dfc4 0%,#fff0d9 50%,#f3dfc4 100%);
+}
+
+#aboutPage .about-hero-copy h1{
+    margin-bottom:12px;
+    color:#653719;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(27px,3.1vw,38px);
+    line-height:1.12;
+}
+
+#aboutPage .about-hero-copy p{
+    max-width:390px;
+    margin:0 0 10px;
+    color:#251b15;
+    font-size:12px;
+    line-height:1.55;
+}
+
+#aboutPage .about-cookie-decoration{
+    margin-top:2px;
+    color:#8a4c25;
+    font-size:25px;
+}
+
+#aboutPage .about-story-cards{
+    max-width:1120px;
+    margin:27px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+}
+
+#aboutPage .about-story-card{
+    overflow:hidden;
+    border-radius:9px;
+    background:#fff;
+    box-shadow:0 2px 8px rgba(74,43,23,.12);
+}
+
+#aboutPage .about-story-card img{
+    display:block;
+    width:100%;
+    height:140px;
+    object-fit:cover;
+}
+
+#aboutPage .about-story-card-copy{
+    padding:10px 11px 13px;
+}
+
+#aboutPage .about-story-card h2{
+    margin-bottom:5px;
+    color:#24170f;
+    font-size:13px;
+    line-height:1.3;
+}
+
+#aboutPage .about-story-card p{
+    color:#49382d;
+    font-size:10px;
+    line-height:1.5;
+}
+
+#aboutPage .about-bottom-link{
+    display:block;
+    width:max-content;
+    margin:25px auto 0;
+    padding:10px 20px;
+    border:0;
+    border-radius:4px;
+    background:#8a512c;
+    color:white;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+#aboutPage .about-bottom-link:hover{
+    background:#633719;
+}
+
+@media(max-width:700px){
+    #aboutPage{padding:0 14px 30px;}
+    #aboutPage .about-navbar{justify-content:flex-end;gap:10px;min-height:54px;}
+    #aboutPage .about-brand{font-size:16px;}
+    #aboutPage .about-links{gap:12px;}
+    #aboutPage .about-links button{font-size:11px;}
+    #aboutPage .about-hero{grid-template-columns:1fr 1fr;}
+    #aboutPage .about-hero-image{min-height:190px;}
+    #aboutPage .about-hero-copy{grid-column:1/-1;grid-row:1;padding:25px 18px;}
+    #aboutPage .about-hero-image.left{grid-column:1;grid-row:2;}
+    #aboutPage .about-hero-image.right{grid-column:2;grid-row:2;}
+    #aboutPage .about-story-cards{grid-template-columns:1fr;max-width:440px;gap:15px;}
+    #aboutPage .about-story-card img{height:190px;}
+}
+
+
+/* =========================
+   MENU PAGE
+========================= */
+
+#menuPage{
+    background:#fff5e4;
+    color:#17120f;
+    min-height:100vh;
+}
+
+.menu-navbar{
+    height:62px;
+    padding:0 4%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff8ec;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:1px solid #eadbc7;
+}
+
+.brand{
+    font-family:'Playfair Display',serif;
+    font-size:25px;
+    font-style:italic;
+    color:#6f3d20;
+    font-weight:700;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.menu-nav-links{
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+.menu-nav-links button{
+    background:none;
+    border:0;
+    color:#21180f;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.menu-nav-links button:hover{
+    color:#a66a3c;
+}
+
+.cart-button{
+    border:0;
+    background:none;
+    color:#6f3d20;
+    font-size:21px;
+    cursor:pointer;
+}
+
+.cart-count{
+    font-size:12px;
+    background:#6f3d20;
+    color:white;
+    border-radius:20px;
+    padding:2px 7px;
+    vertical-align:top;
+    margin-left:2px;
+}
+
+.menu-heading{
+    text-align:center;
+    padding:30px 15px 8px;
+}
+
+.menu-heading h1{
+    font-family:'Playfair Display',serif;
+    color:#6f3d20;
+    font-size:30px;
+}
+
+.menu-heading p{
+    font-size:13px;
+    color:#765e4c;
+    margin-top:5px;
+}
+
+.menu-container{
+    max-width:1240px;
+    margin:0 auto;
+    padding:18px 25px 50px;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+}
+
+.cookie-card{
+    background:white;
+    border:1px solid #eadbc7;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 7px #4a2b171c;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+
+.img-wrapper{
+    width:100%;
+    aspect-ratio:1.25/1;
+    overflow:hidden;
+    background:#eadbc7;
+}
+
+.menu-cookie-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .25s;
+}
+
+.cookie-card:hover .menu-cookie-img{
+    transform:scale(1.04);
+}
+
+.cookie-info{
+    padding:9px 10px 10px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.cookie-info h3{
+    font-size:14px;
+    line-height:1.25;
+    margin-bottom:4px;
+    min-height:35px;
+}
+
+.cookie-info p{
+    font-size:11px;
+    line-height:1.35;
+    color:#51463e;
+    min-height:30px;
+    margin-bottom:8px;
+}
+
+.card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:5px;
+    margin-top:auto;
+}
+
+.price{
+    font-weight:800;
+    font-size:13px;
+    white-space:nowrap;
+}
+
+.add-to-cart{
+    border:0;
+    border-radius:22px;
+    background:#6f3d20;
+    color:#fff;
+    padding:8px 13px;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.add-to-cart:hover{
+    background:#4e2a16;
+}
+
+.cart-action{
+    text-align:center;
+    padding:0 20px 45px;
+}
+
+.primary-btn{
+    border:0;
+    border-radius:22px;
+    background:#6f3d20;
+    color:white;
+    padding:12px 25px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary-btn:hover{
+    background:#4e2a16;
+}
+
+
+/* =========================
+   CHECKOUT PAGE
+========================= */
+
+#checkoutPage{
+    background:#fff5e4;
+    min-height:100vh;
+    color:#17120f;
+}
+
+.checkout-main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:24px 25px 55px;
+}
+
+.checkout-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.checkout-title h1{
+    font-family:'Playfair Display',serif;
+    color:#6f3d20;
+    font-size:31px;
+}
+
+.steps{
+    font-size:14px;
+    margin-top:8px;
+    color:#74563e;
+}
+
+.steps strong{
+    color:#6f3d20;
+    text-decoration:underline;
+    text-underline-offset:5px;
+}
+
+.back-link{
+    border:0;
+    background:none;
+    color:#6f3d20;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:18px;
+}
+
+.checkout-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);
+    gap:35px;
+    align-items:start;
+}
+
+.form-column h2{
+    font-size:25px;
+    margin-bottom:20px;
+}
+
+.form-column h3{
+    font-size:18px;
+    margin:24px 0 11px;
+}
+
+.input-row{
+    display:flex;
+    gap:12px;
+    margin-bottom:12px;
+}
+
+.field{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid #8d806f;
+    border-radius:8px;
+    background:white;
+    color:#30251d;
+    outline:none;
+    min-width:0;
+}
+
+.field:focus{
+    border-color:#6f3d20;
+    box-shadow:0 0 0 2px #a66a3c22;
+}
+
+.delivery-option{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    border:1px solid #b9a58e;
+    border-radius:8px;
+    padding:13px 15px;
+    margin-bottom:9px;
+    cursor:pointer;
+}
+
+.payment-methods{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.payment-tab{
+    background:#fff;
+    border:1px solid #b9a58e;
+    border-radius:9px;
+    padding:13px 8px;
+    text-align:center;
+    cursor:pointer;
+    min-height:85px;
+}
+
+.payment-tab.selected{
+    background:#f5e6d2;
+    border:2px solid #6f3d20;
+    padding:12px 7px;
+    box-shadow:0 2px 7px #6f3d2020;
+}
+
+.payment-title{
+    font-weight:800;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.payment-logos{
+    font-size:12px;
+    font-weight:800;
+    color:#6f3d20;
+    letter-spacing:.3px;
+}
+
+.summary-box{
+    background:white;
+    border:1.5px solid #98704d;
+    border-radius:12px;
+    padding:17px;
+    box-shadow:0 3px 8px #4a2b171a;
+    position:sticky;
+    top:82px;
+}
+
+.summary-title{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.summary-items{
+    max-height:245px;
+    overflow:auto;
+}
+
+.item-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:13px;
+    font-size:13px;
+}
+
+.item-name{
+    font-weight:800;
+}
+
+.item-qty{
+    font-size:11px;
+    color:#76604d;
+    margin-top:3px;
+}
+
+.item-price{
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.discount-row{
+    display:flex;
+    gap:7px;
+    margin:14px 0;
+}
+
+.discount-row input{
+    flex:1;
+    min-width:0;
+    padding:10px;
+    border:1px solid #9c8a78;
+    border-radius:7px;
+}
+
+.discount-row button{
+    padding:9px 12px;
+    border:0;
+    border-radius:7px;
+    background:#e9d6bf;
+    color:#3d2314;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.discount-message{
+    font-size:11px;
+    color:#347348;
+    margin:-7px 0 12px;
+}
+
+.summary-line{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    margin:9px 0;
+    gap:10px;
+}
+
+.summary-divider{
+    border-top:1px solid #d5c3ae;
+    margin:13px 0;
+}
+
+.total-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:19px;
+    font-weight:800;
+    margin-top:12px;
+}
+
+.btn-submit{
+    width:100%;
+    margin-top:18px;
+    border:0;
+    border-radius:25px;
+    padding:13px;
+    background:linear-gradient(90deg,#965528,#7b421f);
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.empty-cart{
+    text-align:center;
+    padding:30px 12px;
+    color:#765e4c;
+}
+
+
+/* =========================
+   POPUPS
+========================= */
+
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#1b120db8;
+    z-index:30;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:min(460px,100%);
+    background:#fffaf1;
+    border:1px solid #b58b62;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 12px 40px #0004;
+}
+
+.modal h2{
+    font-family:'Playfair Display',serif;
+    color:#6f3d20;
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.modal p{
+    font-size:14px;
+    line-height:1.5;
+    color:#554235;
+    margin-bottom:15px;
+}
+
+.modal-items{
+    background:white;
+    border:1px solid #eadbc7;
+    border-radius:9px;
+    padding:12px;
+    max-height:210px;
+    overflow:auto;
+    margin:12px 0;
+}
+
+.modal-item{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:12px;
+    margin:7px 0;
+}
+
+.modal-total{
+    display:flex;
+    justify-content:space-between;
+    font-weight:800;
+    padding-top:10px;
+    border-top:1px solid #e3d2be;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.modal-actions button{
+    flex:1;
+    padding:11px;
+    border-radius:22px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:white;
+    border:1px solid #98704d;
+    color:#6f3d20;
+}
+
+.confirm-btn{
+    background:#6f3d20;
+    border:1px solid #6f3d20;
+    color:white;
+}
+
+.success{
+    text-align:center;
+}
+
+.success-icon{
+    font-size:43px;
+    margin-bottom:8px;
+}
+
+.page-footer{
+    text-align:center;
+    color:#80664f;
+    font-size:11px;
+    padding:18px;
+    border-top:1px solid #eadbc7;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    /* Login becomes image above form */
+
+    #loginPage{
+        padding:25px;
+    }
+
+    .login-main-container{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .login-image-container{
+        height:300px;
+        max-width:500px;
+        margin:auto;
+    }
+
+    .login-container{
+        max-width:500px;
+    }
+
+    .menu-container{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .checkout-layout{
+        grid-template-columns:1fr;
+    }
+
+    .summary-box{
+        position:static;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .home-header{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .home-nav{
+        gap:15px;
+    }
+
+    .hero{
+        height:260px;
+    }
+
+    .products-section{
+        padding:35px 4%;
+    }
+
+    .section-title{
+        font-size:18px;
+    }
+
+    .footer-right{
+        text-align:left;
+    }
+
+}
+
+@media(max-width:560px){
+
+    .menu-navbar{
+        padding:0 15px;
+        height:58px;
+    }
+
+    .brand{
+        font-size:21px;
+    }
+
+    .menu-nav-links{
+        gap:12px;
+    }
+
+    .menu-nav-links button{
+        font-size:12px;
+    }
+
+    .menu-heading h1{
+        font-size:24px;
+    }
+
+    .menu-container{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        padding:14px 12px 35px;
+        gap:12px;
+    }
+
+    .cookie-info{
+        padding:8px;
+    }
+
+    .cookie-info h3{
+        font-size:12px;
+    }
+
+    .cookie-info p{
+        font-size:10px;
+    }
+
+    .price{
+        font-size:11px;
+    }
+
+    .add-to-cart{
+        font-size:10px;
+        padding:7px 9px;
+    }
+
+    .checkout-main{
+        padding:20px 14px 40px;
+    }
+
+    .input-row{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .payment-methods{
+        gap:7px;
+    }
+
+    .payment-title{
+        font-size:11px;
+    }
+
+    .payment-logos{
+        font-size:10px;
+    }
+
+    .form-column h2{
+        font-size:22px;
+    }
+
+    .home-nav{
+        gap:10px;
+    }
+
+    .home-nav a{
+        font-size:12px;
+    }
+
+    .home-logo{
+        font-size:23px;
+    }
+
+    /* Smaller login screen */
+
+    #loginPage{
+        padding:20px;
+    }
+
+    .login-image-container{
+        height:220px;
+    }
+
+    .website-title{
+        font-size:37px;
+    }
+
+    .login-title{
+        font-size:23px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================
+     1. LOGIN PAGE
+===================================== -->
+
+<section id="loginPage" class="page active">
+
+    <main class="login-main-container">
+
+        <!-- LEFT SIDE: COOKIE IMAGE -->
+
+        <div class="login-image-container">
+
+            <img
+                id="previewImage"
+                alt="Crumbs cookie display"
+            >
+
+        </div>
+
+
+        <!-- RIGHT SIDE: LOGIN FORM -->
+
+        <section class="login-container">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-cookie-bite"></i>
+            </div>
+
+            <h1 class="website-title">Crumbs</h1>
+
+            <h2 class="login-title">LOG IN TO CRUMBS</h2>
+
+
+            <form id="loginForm">
+
+                <div class="input-wrapper">
+
+                    <label class="input-label" for="loginEmail">
+                        Email
+                    </label>
+
+                    <i class="fa-regular fa-envelope input-icon"></i>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        class="email-input"
+                        autocomplete="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-wrapper">
+
+                    <label class="input-label" for="loginPassword">
+                        Password
+                    </label>
+
+                    <i class="fa-solid fa-key input-icon"></i>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        class="password-input"
+                        autocomplete="current-password"
+                        minlength="6"
+                        placeholder="At least 6 characters"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="continue-btn">
+                    Log In
+                </button>
+
+            </form>
+
+
+            <div class="divider">
+                Or continue with:
+            </div>
+
+
+            <button
+                type="button"
+                class="google-btn"
+                id="googleDemoButton"
+            >
+
+                <i class="fa-brands fa-google"></i>
+
+                Sign In with Google
+
+            </button>
+
+
+
+        </section>
+
+    </main>
+
+</section>
+
+
+<!-- =====================================
+     2. HOME PAGE
+===================================== -->
+
+<section id="homePage" class="page">
+
+    <header class="home-header">
+
+        <ul class="home-nav">
+
+            <li><a onclick="showPage('homePage')">Home</a></li>
+
+            <li><a onclick="showPage('menuPage')">Menu</a></li>
+
+
+        </ul>
+
+        <div>
+
+            <div class="home-logo">Crumbs</div>
+
+            <div class="welcome" id="welcomeMessage"></div>
+
+        </div>
+
+        <ul class="home-nav">
+
+            <li><a onclick="showPage('aboutPage')">Our Story</a></li>
+
+            <li><a onclick="showCheckout()">Checkout</a></li>
+
+        </ul>
+
+        <div class="nav-icons">
+
+            <button onclick="showPage('menuPage')" aria-label="Open menu">
+                <i class="fa-solid fa-cookie-bite"></i>
+            </button>
+
+            <button onclick="showCheckout()" aria-label="Open cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero" aria-label="Freshly baked cookies"></section>
+
+
+    <section class="products-section">
+
+        <h2 class="section-title">
+            Our Famous 6 Assorted Cookies - $18.99
+        </h2>
+
+        <div class="home-grid">
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1QY4-GfruEUZhlNNJdV0ye-5NhlpEGzLo&sz=w1000" class="home-cookie-img" alt="Classic Chocolate Chip">
+
+                <div class="cookie-name">Classic Chocolate Chip</div>
+
+                <div class="cookie-desc">with chunks & melting chips</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1LBgKwSqt5BaBwG4cfVI-b8IROF0a1XZi&sz=w1000" class="home-cookie-img" alt="Double Chocolate Rich">
+
+                <div class="cookie-name">Double Chocolate Rich</div>
+
+                <div class="cookie-desc">dark, gooey cocoa</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1bQ3uaclzY-JKNFUeMyjLdJ8ftkZ320jp&sz=w1000" class="home-cookie-img" alt="Salted Caramel Oatmeal">
+
+                <div class="cookie-name">Salted Caramel Oatmeal</div>
+
+                <div class="cookie-desc">chewy with caramel drizzle</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1FiQJvmsVgqWuQZKNCmEeWyGfQKwNPaSo&sz=w1000" class="home-cookie-img" alt="Red Velvet Cream Cheese">
+
+                <div class="cookie-name">Red Velvet Cream Cheese</div>
+
+                <div class="cookie-desc">with frosting swirl</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1aq9CTDTqdBnaRPwVGMuDHSosC1Ge7VT8&sz=w1000" class="home-cookie-img" alt="Macadamia White Choc">
+
+                <div class="cookie-name">Macadamia White Choc</div>
+
+                <div class="cookie-desc">white chunks & nuts</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+
+            <article class="home-product">
+
+                <img src="https://drive.google.com/thumbnail?id=1obHhrMzE9VZHpzLaGQPCzDx64GTIaViG&sz=w1000" class="home-cookie-img" alt="Matcha Green Tea">
+
+                <div class="cookie-name">Matcha Green Tea</div>
+
+                <div class="cookie-desc">with imported ceremonial matcha powder</div>
+
+                <button class="btn-shop" onclick="showPage('menuPage')">
+                    Shop this cookie
+                </button>
+
+            </article>
+
+        </div>
+
+
+        <button class="btn-explore" onclick="showPage('menuPage')">
+            Explore All Flavors
+        </button>
+
+    </section>
+
+
+    <footer class="home-footer">
+
+        <div>
+
+            <div class="social-icons">
+
+                <a href="https://www.instagram.com" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="https://www.facebook.com" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+            <p>@TheCookieJar</p>
+
+        </div>
+
+        <div class="footer-center">
+
+            <a onclick="showPage('homePage')">Home</a>
+            <a onclick="showPage('menuPage')">Menu</a>
+            <a onclick="showPage('aboutPage')">About Us</a>
+            <a onclick="showCheckout()">Checkout</a>
+
+        </div>
+
+        <div class="footer-center">
+
+            <a onclick="showPage('menuPage')">Shop</a>
+            <a href="#deliveries">Deliveries</a>
+            <a href="javascript:void(0)" onclick="alert('Contact page is not included yet.')">Contact</a>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p>www.cookiejar.com</p>
+            <p>Copyright © 2026 Cookiejar info</p>
+
+        </div>
+
+    </footer>
+
+</section>
+
+
+
+<!-- =====================================
+     ABOUT / OUR STORY PAGE
+===================================== -->
+
+<section id="aboutPage" class="page">
+
+    <header class="about-navbar">
+        <a class="about-brand" onclick="showPage('homePage')">🍪 Crumbs</a>
+
+        <nav class="about-links" aria-label="About page navigation">
+            <button onclick="showPage('homePage')">Home</button>
+            <button onclick="showPage('menuPage')">Menu</button>
+            <button class="current" onclick="showPage('aboutPage')">About Us</button>
+            <button onclick="showPage('menuPage')">Shop</button>
+        </nav>
+
+        <button class="about-cart" onclick="showCheckout()" aria-label="Open cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+    </header>
+
+    <main>
+        <section class="about-hero" aria-label="The Crumbs bakery story">
+            <div class="about-hero-image left" role="img" aria-label="Baker preparing dough"></div>
+
+            <div class="about-hero-copy">
+                <div class="about-cookie-decoration">• 🍪 •</div>
+                <h1>Our Story:<br>Baking with Heart</h1>
+                <p>Di Crumbs, kami percaya bahwa setiap kue menceritakan sebuah kisah.</p>
+                <p>Bermula dari dapur rumahan kecil di Bandung, hasrat kami untuk menciptakan kelezatan yang tulus telah membawa kami ke tempat kami hari ini.</p>
+            </div>
+
+            <div class="about-hero-image right" role="img" aria-label="Freshly baked chocolate chip cookie"></div>
+        </section>
+
+        <section class="about-story-cards" aria-label="What makes Crumbs special">
+            <article class="about-story-card">
+                <img src="https://drive.google.com/thumbnail?id=1GFDFvaEO5y48DDGy0gdWNEeskbygGn8D&sz=w2000" alt="Fresh baking ingredients">
+                <div class="about-story-card-copy">
+                    <h2>Bahan-Bahan Premium (Premium Ingredients):</h2>
+                    <p>Kami hanya menggunakan bahan terbaik untuk rasa otentik dan kualitas di setiap gigitan.</p>
+                </div>
+            </article>
+
+            <article class="about-story-card">
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=85" alt="Cookies fresh from the oven">
+                <div class="about-story-card-copy">
+                    <h2>Freshly Baked Daily:</h2>
+                    <p>Semua kue kami dipanggang segar setiap hari untuk kepuasan maksimal.</p>
+                </div>
+            </article>
+
+            <article class="about-story-card">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=85" alt="Bakery team preparing food together">
+                <div class="about-story-card-copy">
+                    <h2>Crafted with Love:</h2>
+                    <p>Setiap kue kami dibuat dengan kasih sayang oleh tangan-tangan terampil.</p>
+                </div>
+            </article>
+        </section>
+
+        <button class="about-bottom-link" onclick="showPage('menuPage')">EXPLORE OUR COOKIES</button>
+    </main>
+</section>
+
+
+<!-- =====================================
+     3. MENU PAGE
+===================================== -->
+
+<section id="menuPage" class="page">
+
+    <header class="menu-navbar">
+
+        <a class="brand" onclick="showPage('homePage')">
+            🍪 Crumbs
+        </a>
+
+        <nav class="menu-nav-links">
+
+            <button onclick="showPage('homePage')">Home</button>
+
+            <button onclick="showPage('menuPage')">Menu</button>
+
+            <button onclick="showPage('aboutPage')">About Us</button>
+
+            <button onclick="showCheckout()">Checkout</button>
+
+        </nav>
+
+        <button class="cart-button" onclick="showCheckout()" aria-label="Open cart">
+
+            🛒 <span class="cart-count" id="cartCount">0</span>
+
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <section class="menu-heading">
+
+            <h1>Our Cookie Menu</h1>
+
+            <p>Freshly baked happiness, one cookie at a time.</p>
+
+        </section>
+
+
+        <section class="menu-container" id="productGrid"></section>
+
+
+        <div class="cart-action">
+
+            <button class="primary-btn" onclick="showCheckout()">
+
+                Go to Checkout · <span id="cartButtonCount">0</span> items
+
+            </button>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+<!-- =====================================
+     4. CHECKOUT PAGE
+===================================== -->
+
+<section id="checkoutPage" class="page">
+
+    <div class="checkout-main">
+
+        <button class="back-link" onclick="showPage('menuPage')">
+            ← Back to Menu
+        </button>
+
+        <div class="checkout-title">
+
+            <h1>Secure Checkout - Crumbs</h1>
+
+            <div class="steps">
+
+                1. Account &nbsp; → &nbsp;
+                <strong>2. Delivery & Payment</strong>
+                &nbsp; → &nbsp; 3. Review & Complete
+
+            </div>
+
+        </div>
+
+
+        <div class="checkout-layout">
+
+            <section class="form-column">
+
+                <h2>2. Delivery & Payment</h2>
+
+                <form id="checkoutForm" novalidate>
+
+                    <h3>Delivery Information</h3>
+
+                    <div class="input-row">
+
+                        <input class="field" id="fullName" type="text" placeholder="Full Name" required>
+
+                        <input class="field" id="checkoutEmail" type="text" placeholder="Email" required>
+
+                    </div>
+
+                    <div class="input-row">
+
+                        <input class="field" id="phone" type="tel" placeholder="Phone Number" required>
+
+                    </div>
+
+                    <div class="input-row">
+
+                        <input class="field" id="address" type="text" placeholder="Shipping Address" required>
+
+                    </div>
+
+
+                    <h3>Delivery Method</h3>
+
+                    <label class="delivery-option">
+
+                        <span>
+                            <input type="radio" name="delivery" value="25000" checked>
+                            &nbsp; Instant (GoJek/Grab)
+                        </span>
+
+                        <strong>Rp 25.000</strong>
+
+                    </label>
+
+                    <label class="delivery-option">
+
+                        <span>
+                            <input type="radio" name="delivery" value="12000">
+                            &nbsp; Regular
+                        </span>
+
+                        <strong>Rp 12.000</strong>
+
+                    </label>
+
+
+                    <h3>Payment Method</h3>
+
+                    <div class="payment-methods">
+
+                        <button type="button" class="payment-tab" data-payment="Credit Cards" onclick="selectPayment(this)">
+
+                            <div class="payment-title">Credit Cards</div>
+
+                            <div class="payment-logos">VISA · Mastercard · AMEX</div>
+
+                        </button>
+
+
+                        <button type="button" class="payment-tab" data-payment="E-Wallets" onclick="selectPayment(this)">
+
+                            <div class="payment-title">E-Wallets</div>
+
+                            <div class="payment-logos">GoPay · OVO · ShopeePay</div>
+
+                        </button>
+
+
+                        <button type="button" class="payment-tab" data-payment="Bank Transfer" onclick="selectPayment(this)">
+
+                            <div class="payment-title">Bank Transfer</div>
+
+                            <div class="payment-logos">BCA · Mandiri · BRI</div>
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <aside class="summary-column">
+
+                <div class="summary-box">
+
+                    <div class="summary-title">
+                        Order Summary
+                    </div>
+
+                    <div class="summary-items" id="summaryItems"></div>
+
+                    <div class="discount-row">
+
+                        <input id="discountCode" type="text" placeholder="Discount Code / Gift Card">
+
+                        <button type="button" onclick="applyDiscount()">
+                            Apply
+                        </button>
+
+                    </div>
+
+                    <div id="discountMessage" class="discount-message"></div>
+
+                    <div class="summary-line">
+
+                        <span>Subtotal:</span>
+                        <strong id="subtotal">Rp 0</strong>
+
+                    </div>
+
+                    <div class="summary-line">
+
+                        <span>Discount:</span>
+                        <strong id="discountAmount">- Rp 0</strong>
+
+                    </div>
+
+                    <div class="summary-line">
+
+                        <span>Delivery Fee:</span>
+                        <strong id="deliveryFee">Rp 25.000</strong>
+
+                    </div>
+
+                    <div class="summary-line">
+
+                        <span>Estimated Taxes (11%):</span>
+                        <strong id="taxAmount">Rp 0</strong>
+
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="total-row">
+
+                        <span>Order Total:</span>
+                        <span id="grandTotal">Rp 0</span>
+
+                    </div>
+
+                    <button class="btn-submit" type="button" onclick="reviewOrder()">
+
+                        Review Order & Pay
+
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="page-footer">
+    © 2026 Crumbs · Baked with love.
+</footer>
+
+
+<!-- =====================================
+     ORDER CONFIRMATION POPUP
+===================================== -->
+
+<div class="overlay" id="confirmOverlay" role="dialog" aria-modal="true">
+
+    <div class="modal">
+
+        <h2>Confirm Your Order</h2>
+
+        <p>
+            Please check your items and total before confirming this test order.
+        </p>
+
+        <div class="modal-items" id="confirmItems"></div>
+
+        <div class="modal-total">
+
+            <span>Total</span>
+            <span id="confirmTotal"></span>
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button class="cancel-btn" onclick="closeConfirm()">
+                Cancel
+            </button>
+
+            <button class="confirm-btn" onclick="confirmOrder()">
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     SUCCESS POPUP
+===================================== -->
+
+<div class="overlay" id="successOverlay" role="dialog" aria-modal="true">
+
+    <div class="modal success">
+
+        <div class="success-icon">🍪</div>
+
+        <h2>Order Made!</h2>
+
+        <p>
+            Your test order has been confirmed.
+            Thank you for choosing Crumbs!
+        </p>
+
+        <button class="btn-submit" onclick="finishOrder()">
+            Okay
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   LOGIN IMAGE
+===================================== */
+
+// Uses the same image as the Home page hero.
+// Replace this link if you want a different login image.
+
+const googleDriveLink =
+    "https://drive.google.com/file/d/1e-4pP-4Et2J545EH-lus07CrQyJJY0d1/view";
+
+function getGoogleDriveImage(link){
+
+    if(!link.trim()) return "";
+
+    const match = link.match(
+        /(?:\/file\/d\/|[?&]id=)([a-zA-Z0-9_-]+)/
+    );
+
+    return match
+        ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w2000`
+        : link;
+
+}
+
+const preview = document.getElementById("previewImage");
+
+const previewUrl = getGoogleDriveImage(googleDriveLink);
+
+if(previewUrl){
+
+    preview.src = previewUrl;
+
+    preview.style.display = "block";
+
+}
+
+
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+function showPage(pageId){
+
+    document.querySelectorAll(".page").forEach(page=>{
+
+        page.classList.remove("active");
+
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo(0,0);
+
+}
+
+
+function showCheckout(){
+
+    updateCart();
+
+    showPage("checkoutPage");
+
+    const savedUser = localStorage.getItem("crumbsUser");
+
+    if(savedUser){
+
+        try{
+
+            const user = JSON.parse(savedUser);
+
+            if(user.email){
+
+                document.getElementById("checkoutEmail").value = user.email;
+
+            }
+
+        }catch(error){
+
+            console.log("Could not read saved user.");
+
+        }
+
+    }
+
+}
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+document.getElementById("loginForm").addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    // Check the email and password requirements.
+
+    if(!this.reportValidity()){
+
+        return;
+
+    }
+
+    const email = document.getElementById("loginEmail").value.trim();
+
+    const password = document.getElementById("loginPassword").value;
+
+    if(!email.includes("@")){
+
+        alert("Please enter a valid email address.");
+
+        return;
+
+    }
+
+    if(password.length < 6){
+
+        alert("Your password must contain at least 6 characters.");
+
+        return;
+
+    }
+
+    const user = {
+
+        displayName:email.split("@")[0],
+
+        email:email
+
+    };
+
+    localStorage.setItem("crumbsUser",JSON.stringify(user));
+
+    document.getElementById("welcomeMessage").textContent =
+        "Welcome, " + user.displayName;
+
+    // Open Home without leaving this HTML file.
+
+    showPage("homePage");
+
+});
+
+
+// GOOGLE DEMO LOGIN
+
+document.getElementById("googleDemoButton").addEventListener("click",function(){
+
+    const user = {
+
+        displayName:"Google User"
+
+    };
+
+    localStorage.setItem("crumbsUser",JSON.stringify(user));
+
+    document.getElementById("welcomeMessage").textContent =
+        "Welcome, " + user.displayName;
+
+    // This is a demo button, not real Google authentication.
+
+    showPage("homePage");
+
+});
+
+
+/* =====================================
+   COOKIE PRODUCTS
+===================================== */
+
+const products = [
+
+{
+id:1,
+name:"Classic Chocolate Chip",
+description:"Cookie renyah dengan potongan cokelat yang meleleh.",
+price:20000,
+img:"https://drive.google.com/thumbnail?id=1QY4-GfruEUZhlNNJdV0ye-5NhlpEGzLo&sz=w1000"
+},
+
+{
+id:2,
+name:"Double Chocolate Rich",
+description:"Dark, gooey cocoa in every bite.",
+price:20000,
+img:"https://drive.google.com/thumbnail?id=1LBgKwSqt5BaBwG4cfVI-b8IROF0a1XZi&sz=w1000"
+},
+
+{
+id:3,
+name:"Salted Caramel Oatmeal",
+description:"Chewy oatmeal with a caramel drizzle.",
+price:25000,
+img:"https://drive.google.com/thumbnail?id=1bQ3uaclzY-JKNFUeMyjLdJ8ftkZ320jp&sz=w1000"
+},
+
+{
+id:4,
+name:"Red Velvet Cream Cheese",
+description:"Rich red velvet with a creamy centre.",
+price:25000,
+img:"https://drive.google.com/thumbnail?id=1FiQJvmsVgqWuQZKNCmEeWyGfQKwNPaSo&sz=w1000"
+},
+
+{
+id:5,
+name:"Macadamia White Choc",
+description:"White chocolate chunks and macadamia nuts.",
+price:22000,
+img:"https://drive.google.com/thumbnail?id=1aq9CTDTqdBnaRPwVGMuDHSosC1Ge7VT8&sz=w1000"
+},
+
+{
+id:6,
+name:"Matcha Green Tea",
+description:"Made with fragrant ceremonial matcha.",
+price:23000,
+img:"https://drive.google.com/thumbnail?id=1obHhrMzE9VZHpzLaGQPCzDx64GTIaViG&sz=w1000"
+},
+
+{
+id:7,
+name:"Cookies & Cream Supreme",
+description:"Fudgy brownie crinkle with cookie pieces.",
+price:23000,
+img:"https://drive.google.com/thumbnail?id=1Uw5xamaj8yv2EKB7guBY9ayJ_qiiHpI_&sz=w1000"
+},
+
+{
+id:8,
+name:"Double Choco Lava",
+description:"Chocolate cookie with a gooey hazelnut centre.",
+price:25000,
+img:"https://drive.google.com/thumbnail?id=1iEkNOPaFCPpR2vy40eXVTkDZrfwSDGbQ&sz=w1000"
+},
+
+{
+id:9,
+name:"Lemon Zest White Chocolate",
+description:"Fresh citrus paired with sweet white chocolate.",
+price:22000,
+img:"https://drive.google.com/thumbnail?id=1WqkGrB6ViIWkqH75cOOCNOsUoeL8jjwN&sz=w1000"
+},
+
+{
+id:10,
+name:"Espresso Brownie Crinkle",
+description:"Rich coffee aroma and a dark chocolate core.",
+price:24000,
+img:"https://drive.google.com/thumbnail?id=1guFOnfRcnaCL84IJJYyMICO5Vlozz8iW&sz=w1000"
+},
+
+{
+id:11,
+name:"S'mores Meltdown",
+description:"Toasted marshmallow on a gooey chocolate base.",
+price:26000,
+img:"https://drive.google.com/thumbnail?id=19qHQJss6Lo93X_3HlcsIvdXlTQm4i4Gc&sz=w1000"
+},
+
+{
+id:12,
+name:"Classic Walnut Chunk",
+description:"Toasted walnuts mixed with dark chocolate chunks.",
+price:24000,
+img:"https://drive.google.com/thumbnail?id=1HhG01FYiJ4_RuHZ1sMzS3uuLEPL8Sjr8&sz=w1000"
+}
+
+];
+
+
+/* =====================================
+   CART
+===================================== */
+
+let cart = {};
+
+let discountApplied = false;
+
+let selectedPayment = "";
+
+const rupiah = n =>
+    "Rp " + Math.round(n).toLocaleString("id-ID");
+
+
+/* DISPLAY PRODUCTS */
+
+function renderProducts(){
+
+    document.getElementById("productGrid").innerHTML = products.map(p=>`
+
+        <article class="cookie-card">
+
+            <div class="img-wrapper">
+
+                <img class="menu-cookie-img"
+                     src="${p.img}"
+                     alt="${p.name}"
+                     loading="lazy">
+
+            </div>
+
+            <div class="cookie-info">
+
+                <h3>${p.name}</h3>
+
+                <p>${p.description}</p>
+
+                <div class="card-footer">
+
+                    <span class="price">${rupiah(p.price)}</span>
+
+                    <button class="add-to-cart"
+                            onclick="addToCart(${p.id})">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+/* ADD TO CART */
+
+function addToCart(id){
+
+    cart[id] = (cart[id] || 0) + 1;
+
+    updateCart();
+
+}
+
+
+/* UPDATE CART */
+
+function updateCart(){
+
+    const count = Object.values(cart).reduce((a,b)=>a+b,0);
+
+    document.getElementById("cartCount").textContent = count;
+
+    document.getElementById("cartButtonCount").textContent = count;
+
+    const items = products.filter(p=>cart[p.id]);
+
+    document.getElementById("summaryItems").innerHTML = items.length
+
+    ? items.map(p=>`
+
+        <div class="item-row">
+
+            <div>
+
+                <div class="item-name">${p.name}</div>
+
+                <div class="item-qty">
+                    Qty ${cart[p.id]} × ${rupiah(p.price)}
+                </div>
+
+            </div>
+
+            <div class="item-price">
+                ${rupiah(p.price*cart[p.id])}
+            </div>
+
+        </div>
+
+    `).join("")
+
+    : '<div class="empty-cart">Your cart is empty. Add some cookies from the menu!</div>';
+
+    calculateTotals();
+
+}
+
+
+/* SUBTOTAL */
+
+function subtotal(){
+
+    return products.reduce(
+        (sum,p)=>sum+p.price*(cart[p.id]||0),
+        0
+    );
+
+}
+
+
+/* DELIVERY */
+
+function deliveryCost(){
+
+    return Number(
+        document.querySelector('input[name="delivery"]:checked')?.value || 25000
+    );
+
+}
+
+
+/* CALCULATE TOTAL */
+
+function calculateTotals(){
+
+    const sub = subtotal();
+
+    const discount = discountApplied
+        ? Math.round(sub*.10)
+        : 0;
+
+    const fee = deliveryCost();
+
+    const tax = Math.round((sub-discount)*.11);
+
+    const total = sub-discount+fee+tax;
+
+    document.getElementById("subtotal").textContent = rupiah(sub);
+
+    document.getElementById("discountAmount").textContent =
+        "- "+rupiah(discount);
+
+    document.getElementById("deliveryFee").textContent =
+        rupiah(fee);
+
+    document.getElementById("taxAmount").textContent =
+        rupiah(tax);
+
+    document.getElementById("grandTotal").textContent =
+        rupiah(total);
+
+    return {sub,discount,fee,tax,total};
+
+}
+
+
+/* APPLY DISCOUNT */
+
+function applyDiscount(){
+
+    const code = document.getElementById("discountCode").value.trim();
+
+    const message = document.getElementById("discountMessage");
+
+    if(!code){
+
+        discountApplied = false;
+
+        message.style.color = "#a33";
+
+        message.textContent =
+            "Please enter a discount code or gift card.";
+
+    }
+
+    else if(subtotal()===0){
+
+        discountApplied = false;
+
+        message.style.color = "#a33";
+
+        message.textContent =
+            "Add items to your cart before applying a code.";
+
+    }
+
+    else{
+
+        discountApplied = true;
+
+        message.style.color = "#347348";
+
+        message.textContent =
+            `Demo code "${code}" applied — 10% off!`;
+
+    }
+
+    calculateTotals();
+
+}
+
+
+/* SELECT PAYMENT */
+
+function selectPayment(button){
+
+    document.querySelectorAll(".payment-tab").forEach(b=>{
+        b.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    selectedPayment = button.dataset.payment;
+
+}
+
+
+/* DELIVERY METHOD CHANGE */
+
+document.querySelectorAll('input[name="delivery"]').forEach(r=>{
+
+    r.addEventListener("change",calculateTotals);
+
+});
+
+
+/* =====================================
+   ORDER REVIEW
+===================================== */
+
+function reviewOrder(){
+
+    if(subtotal()===0){
+
+        alert("Your cart is empty. Please add at least one cookie first.");
+
+        return;
+
+    }
+
+    const name = document.getElementById("fullName").value.trim();
+
+    const email = document.getElementById("checkoutEmail").value.trim();
+
+    const phone = document.getElementById("phone").value.trim();
+
+    const address = document.getElementById("address").value.trim();
+
+    if(!name || !email || !email.includes("@") || !phone || !address){
+
+        alert("Please complete your name, valid email, phone number, and shipping address.");
+
+        return;
+
+    }
+
+    if(!selectedPayment){
+
+        alert("Please select a payment method.");
+
+        return;
+
+    }
+
+    const details = products.filter(p=>cart[p.id]);
+
+    document.getElementById("confirmItems").innerHTML =
+
+    details.map(p=>`
+
+        <div class="modal-item">
+
+            <span>${p.name} × ${cart[p.id]}</span>
+
+            <strong>${rupiah(p.price*cart[p.id])}</strong>
+
+        </div>
+
+    `).join("") +
+
+    `
+
+    <div class="modal-item">
+
+        <span>Discount</span>
+
+        <strong>- ${rupiah(calculateTotals().discount)}</strong>
+
+    </div>
+
+    <div class="modal-item">
+
+        <span>Delivery</span>
+
+        <strong>${rupiah(deliveryCost())}</strong>
+
+    </div>
+
+    <div class="modal-item">
+
+        <span>Payment</span>
+
+        <strong>${selectedPayment}</strong>
+
+    </div>
+
+    `;
+
+    document.getElementById("confirmTotal").textContent =
+        rupiah(calculateTotals().total);
+
+    document.getElementById("confirmOverlay").classList.add("show");
+
+}
+
+
+/* CLOSE CONFIRMATION */
+
+function closeConfirm(){
+
+    document.getElementById("confirmOverlay").classList.remove("show");
+
+}
+
+
+/* CONFIRM ORDER */
+
+function confirmOrder(){
+
+    closeConfirm();
+
+    document.getElementById("successOverlay").classList.add("show");
+
+}
+
+
+/* FINISH ORDER */
+
+function finishOrder(){
+
+    document.getElementById("successOverlay").classList.remove("show");
+
+    cart = {};
+
+    discountApplied = false;
+
+    selectedPayment = "";
+
+    document.getElementById("checkoutForm").reset();
+
+    document.querySelectorAll(".payment-tab").forEach(b=>{
+        b.classList.remove("selected");
+    });
+
+    document.getElementById("discountCode").value = "";
+
+    document.getElementById("discountMessage").textContent = "";
+
+    updateCart();
+
+    showPage("homePage");
+
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+renderProducts();
+
+updateCart();
+
+</script>
+
+</body>
+</html>
